@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "47c67aed-7182-4e96-be5c-545a6b8b3d28",
+		"name": "BoostChalenge2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30831676",
+		"_collection_link": "https://erre-boost-api.postman.co/workspace/bc852099-7a99-424b-896a-e5958310692e/collection/26454674-47c67aed-7182-4e96-be5c-545a6b8b3d28?action=share&source=collection_link&creator=30831676"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"USER\",\n   \"password\": \"PASS\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/login",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc2FlZG9AZGVzaWduc3RhdGlvbi5wdCIsImZpcnN0TmFtZSI6IkNhcmxvcyIsImxhc3ROYW1lIjoiQWVkbyIsInVzZXJHcm91cCI6ImFkbWluaXN0cmF0b3IiLCJ1c2VySWQiOiI2NDRhODgyYzJmM2M0ZjAzOWRhOGMwNzQiLCJpYXQiOjE3MDkwMzI1MzYsImV4cCI6MTcwOTYzNzMzNn0.lfbL9VE7Ds1cflIso8scW837IKUTlMzCyG4JDFUwi6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Jony\",\n\n    \"oldPassword\": \"123456\",\n   \"password\": \"123456\",\n   \"securePasswordFlag\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/update-user",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "update-user"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joel\",\n    \"lastName\":\"Aedo\",\n    \"email\": \"joel@designstation.pt\",\n    \"password\": \"#/&//(/&hdhebwieue2124DFf\",\n    \"securePasswordFlag\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://app.grupoerre.pt:1034/auth/create-user",
+							"protocol": "http",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1034",
+							"path": ["auth", "create-user"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestPasswordReset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/requestResetPassword?email={email}",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "requestResetPassword"],
+							"query": [
+								{
+									"key": "email",
+									"value": "{email}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc2FlZG9AZGVzaWduc3RhdGlvbi5wdCIsImZpcnN0TmFtZSI6IkNhcmxvcyIsImxhc3ROYW1lIjoiQWVkbyIsInVzZXJJZCI6IjY0NGE4ODJjMmYzYzRmMDM5ZGE4YzA3NCIsImlhdCI6MTcxMDc2ODQwNCwiZXhwIjoxNzExMzczMjA0fQ.w_ysEqnNYN694X_T5eIUt_4dtnNIady-IiUPquvFUME",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/logout",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "logout"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc2FlZG9AZGVzaWduc3RhdGlvbi5wdCIsImlhdCI6MTY5NDE3MjA3OCwiZXhwIjoxNjk0MjU4NDc4fQ.EYIAcWx9XtFD5Yzqp_tJU7HUcVYPbQVAfTNwxgYqhwc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/check-authentication-status",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "check-authentication-status"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpbGlwZXNpbHZhQGdydXBvZXJyZS5wdCIsImZpcnN0TmFtZSI6IkZpbGlwZSIsImxhc3ROYW1lIjoiU2lsdmEiLCJ1c2VySWQiOiI2NWMzNTI1ODk5MDVkNGYzNmQ3ZjlkYmEiLCJpYXQiOjE3MTI0MTU3OTYsImV4cCI6MTcxMzAyMDU5Nn0.L7mT23uKr97VI2xXqP1zZWHJsHtEOiqfw7G-xT6zA8w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1034/user/info",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1034",
+							"path": ["user", "info"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create admin  - Optional",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joel\",\n    \"lastName\":\"Aedo\",\n    \"email\": \"joel@designstation.pt\",\n    \"password\": \"#/&//(/&hdhebwieue2124DFf\",\n    \"securePasswordFlag\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/create-administrator",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "create-administrator"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login 2sa - Optional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"carlosaedo@designstation.pt\",\n   \"authCode\": 294931\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/auth/login-2fa",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["auth", "login-2fa"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login 2sa - refresh code  - Optional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"carlosaedo@designstation.pt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1034/auth/refresh-2fa-code",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "1034",
+							"path": ["auth", "refresh-2fa-code"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://app.grupoerre.pt:1934/upload?destinationFolder=FOLDER_NAME",
+							"protocol": "https",
+							"host": ["app", "grupoerre", "pt"],
+							"port": "1934",
+							"path": ["upload"],
+							"query": [
+								{
+									"key": "destinationFolder",
+									"value": "users/profilepicture",
+									"disabled": true
+								},
+								{
+									"key": "destinationFolder",
+									"value": "FOLDER_NAME"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

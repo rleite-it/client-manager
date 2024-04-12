@@ -1,18 +1,28 @@
+import { useNavigate } from "react-router";
+import { CircleUserRound, Home, LogOut } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
-import { CircleUserRound, Home, LogOut } from "lucide-react";
-import { AuthContextType, useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router";
+import { useAuth } from "@/hooks/useAuth";
+
+import { AuthContextType } from "@/types/Auth.types";
 
 const Navbar = () => {
 	const navigate = useNavigate();
 	const { authed, logout } = useAuth() as AuthContextType;
 
 	return (
-		<div className="w-screen h-4 p-3 absolute top-0 flex gap-1 justify-between">
-			<Button size="icon" variant="ghost" onClick={() => navigate("/")}>
-				<Home className="h-[1.2rem] w-[1.2rem]" />
-			</Button>
+		<div
+			className={`w-screen h-4 p-3 absolute top-0 flex gap-1 ${
+				authed ? "justify-between" : "justify-end"
+			}`}
+		>
+			{authed ? (
+				<Button size="icon" variant="ghost" onClick={() => navigate("/")}>
+					<Home className="h-[1.2rem] w-[1.2rem]" />
+				</Button>
+			) : (
+				<></>
+			)}
 			<div>
 				<ModeToggle />
 				{authed ? (
@@ -29,7 +39,7 @@ const Navbar = () => {
 						</Button>
 					</>
 				) : (
-					""
+					<></>
 				)}
 			</div>
 		</div>

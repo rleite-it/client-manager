@@ -26,7 +26,6 @@ export const ROUTES = [
 				<ClientDetails />
 			</ProtectedRoute>
 		),
-		errorElement: <Error />,
 	},
 	{
 		name: "profile",
@@ -36,12 +35,10 @@ export const ROUTES = [
 				<Profile />
 			</ProtectedRoute>
 		),
-		errorElement: <Error />,
 	},
 	{
 		name: "login",
 		path: "/login",
 		element: <Login />,
-		errorElement: <Error />,
 	},
 ];

@@ -1,12 +1,14 @@
+import React, { useEffect, useState } from "react";
+import { CircleUserRound } from "lucide-react";
 import Title from "@/components/title";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
-import { UserContexType, UserProps, useUser } from "@/hooks/useUser";
-import { CircleUserRound } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useUser } from "@/hooks/useUser";
+
+import { UserContexType, UserProps } from "@/types/User.types";
 
 const Profile = () => {
 	const { user, updateUser } = useUser() as UserContexType;

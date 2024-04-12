@@ -1,4 +1,9 @@
-import { ClientContextType, ClientProps } from "@/types/Client.types";
+import {
+	ClientContextType,
+	ClientProps,
+	ImportantDateProps,
+	NoteProps,
+} from "@/types/Client.types";
 import React, { createContext, useContext, useState } from "react";
 
 export const ClientContext = createContext<ClientContextType | null>(null);
@@ -17,13 +22,37 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					id: 1,
 					author: "Jane Smith",
-					type: "Need",
+					type: "need",
 					description: "This is a note about the client's needs.",
 				},
 				{
 					id: 2,
 					author: "John Doe",
-					type: "Requirement",
+					type: "requirement",
+					description: "This is a note about the client's requirements.",
+				},
+				{
+					id: 3,
+					author: "Jane Smith",
+					type: "preference",
+					description: "This is a note about the client's preferences.",
+				},
+				{
+					id: 4,
+					author: "John Doe",
+					type: "requirement",
+					description: "This is a note about the client's requirements.",
+				},
+				{
+					id: 5,
+					author: "Jane Smith",
+					type: "need",
+					description: "This is a note about the client's needs.",
+				},
+				{
+					id: 6,
+					author: "John Doe",
+					type: "requirement",
 					description: "This is a note about the client's requirements.",
 				},
 			],
@@ -52,13 +81,13 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					id: 1,
 					author: "Jane Smith",
-					type: "Need",
+					type: "need",
 					description: "This is a note about the client's needs.",
 				},
 				{
 					id: 2,
 					author: "John Doe",
-					type: "Requirement",
+					type: "requirement",
 					description: "This is a note about the client's requirements.",
 				},
 			],
@@ -87,13 +116,13 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					id: 1,
 					author: "Jane Smith",
-					type: "Need",
+					type: "need",
 					description: "This is a note about the client's needs.",
 				},
 				{
 					id: 2,
 					author: "John Doe",
-					type: "Requirement",
+					type: "requirement",
 					description: "This is a note about the client's requirements.",
 				},
 			],
@@ -122,14 +151,14 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					id: 1,
 					author: "Jane Smith",
-					type: "Need",
+					type: "need",
 					description: "This is a note about the client's needs.",
 				},
 				{
 					id: 2,
 					author: "John Doe",
-					type: "Requirement",
-					description: "This is a note about the client's requirements.",
+					type: "preference",
+					description: "This is a note about the client's preferences.",
 				},
 			],
 			schedule: [
@@ -157,13 +186,13 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					id: 1,
 					author: "Jane Smith",
-					type: "Need",
+					type: "need",
 					description: "This is a note about the client's needs.",
 				},
 				{
 					id: 2,
 					author: "John Doe",
-					type: "Requirement",
+					type: "requirement",
 					description: "This is a note about the client's requirements.",
 				},
 			],
@@ -216,6 +245,10 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 		setClients(finalArr);
 	};
 
+	const addNote = (clientID: number, note: NoteProps) => {};
+
+	const addMeeting = (meeting: ImportantDateProps) => {};
+
 	return (
 		<ClientContext.Provider
 			value={{
@@ -225,6 +258,8 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 				removeClient,
 				filterClient,
 				getClient,
+				addNote,
+				addMeeting,
 			}}
 		>
 			{children}

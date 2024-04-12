@@ -17,23 +17,18 @@ import {
 
 import { useClient } from "@/hooks/useClient";
 
-import {
-	ClientContextType,
-	ClientProps,
-	NoteProps,
-} from "@/types/Client.types";
-
-const userName = JSON.parse(sessionStorage.getItem("user")).fullName;
+import { ClientContextType, ClientProps } from "@/types/Client.types";
 
 const ClientDetails = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
-	const { getClient, removeClient } = useClient() as ClientContextType;
+	const user = JSON.parse(sessionStorage.getItem("user") ?? "");
+	const { getClient, removeClient, addNote } = useClient() as ClientContextType;
 
 	const [client, setClient] = useState<ClientProps | null>(null);
-	const [note, setNote] = useState<NoteProps | null>({
+	const [note, setNote] = useState({
 		id: Math.random(),
-		author: userName,
+		author: `${user.firstName} ${user.lastName}`,
 		type: "need",
 		description: "",
 	});
@@ -44,16 +39,25 @@ const ClientDetails = () => {
 		setClient(clientResult);
 	}, []);
 
-	const handleNoteChange = (e) => {
+	const handleNoteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNote({ ...note, [e.target.name]: e.target.value });
 	};
 
-	const handleNoteType = (noteType) => {
+	const handleNoteType = (noteType: string) => {
 		setNote({ ...note, type: noteType });
 	};
 
-	const submitNote = (e) => {
+	const submitNote = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		addNote(Number(id), note);
+
+		setNote({
+			id: Math.random(),
+			author: `${user.firstName} ${user.lastName}`,
+			type: "",
+			description: "",
+		});
 	};
 
 	const handleDelete = () => {
@@ -145,7 +149,7 @@ const ClientDetails = () => {
 						<ScrollArea className="h-[450px] p-4">
 							<div className="flex flex-col gap-y-3">
 								{client.notes.map((note) => (
-									<NoteItem note={note} />
+									<NoteItem key={`note-${note.id}`} note={note} />
 								))}
 							</div>
 						</ScrollArea>
@@ -159,12 +163,17 @@ const ClientDetails = () => {
 										placeholder="What's the note?"
 										rows={4}
 										required
+										value={note.description}
 										onChange={(e) => handleNoteChange(e)}
 									/>
 								</div>
 								<div className="grid grid-cols-2 gap-4">
 									<div className="grid">
-										<Select required onValueChange={(e) => handleNoteType(e)}>
+										<Select
+											required
+											value={note.type}
+											onValueChange={(e) => handleNoteType(e)}
+										>
 											<SelectTrigger>
 												<SelectValue placeholder="Type" />
 											</SelectTrigger>

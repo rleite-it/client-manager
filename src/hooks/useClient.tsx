@@ -59,154 +59,12 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 			schedule: [
 				{
 					id: 1,
-					day: new Date("2024-04-11"),
-					hour: new Date("2024-04-11T09:00:00"),
+					date: new Date("2024-04-11T09:00:00"),
 					subject: "Meeting with client",
 				},
 				{
 					id: 2,
-					day: new Date("2024-04-12"),
-					hour: new Date("2024-04-12T14:00:00"),
-					subject: "Follow-up call",
-				},
-			],
-		},
-		{
-			id: 2,
-			fullName: "Audrey Lancelot",
-			email: "john.doe@example.com",
-			phone: "+1234567890",
-			address: "123 Main Street, City, Country",
-			notes: [
-				{
-					id: 1,
-					author: "Jane Smith",
-					type: "need",
-					description: "This is a note about the client's needs.",
-				},
-				{
-					id: 2,
-					author: "John Doe",
-					type: "requirement",
-					description: "This is a note about the client's requirements.",
-				},
-			],
-			schedule: [
-				{
-					id: 1,
-					day: new Date("2024-04-11"),
-					hour: new Date("2024-04-11T09:00:00"),
-					subject: "Meeting with client",
-				},
-				{
-					id: 2,
-					day: new Date("2024-04-12"),
-					hour: new Date("2024-04-12T14:00:00"),
-					subject: "Follow-up call",
-				},
-			],
-		},
-		{
-			id: 3,
-			fullName: "John Doe",
-			email: "john.doe@example.com",
-			phone: "+1234567890",
-			address: "123 Main Street, City, Country",
-			notes: [
-				{
-					id: 1,
-					author: "Jane Smith",
-					type: "need",
-					description: "This is a note about the client's needs.",
-				},
-				{
-					id: 2,
-					author: "John Doe",
-					type: "requirement",
-					description: "This is a note about the client's requirements.",
-				},
-			],
-			schedule: [
-				{
-					id: 1,
-					day: new Date("2024-04-11"),
-					hour: new Date("2024-04-11T09:00:00"),
-					subject: "Meeting with client",
-				},
-				{
-					id: 2,
-					day: new Date("2024-04-12"),
-					hour: new Date("2024-04-12T14:00:00"),
-					subject: "Follow-up call",
-				},
-			],
-		},
-		{
-			id: 4,
-			fullName: "John Doe",
-			email: "john.doe@example.com",
-			phone: "+1234567890",
-			address: "123 Main Street, City, Country",
-			notes: [
-				{
-					id: 1,
-					author: "Jane Smith",
-					type: "need",
-					description: "This is a note about the client's needs.",
-				},
-				{
-					id: 2,
-					author: "John Doe",
-					type: "preference",
-					description: "This is a note about the client's preferences.",
-				},
-			],
-			schedule: [
-				{
-					id: 1,
-					day: new Date("2024-04-11"),
-					hour: new Date("2024-04-11T09:00:00"),
-					subject: "Meeting with client",
-				},
-				{
-					id: 2,
-					day: new Date("2024-04-12"),
-					hour: new Date("2024-04-12T14:00:00"),
-					subject: "Follow-up call",
-				},
-			],
-		},
-		{
-			id: 5,
-			fullName: "John Doe",
-			email: "john.doe@example.com",
-			phone: "+1234567890",
-			address: "123 Main Street, City, Country",
-			notes: [
-				{
-					id: 1,
-					author: "Jane Smith",
-					type: "need",
-					description: "This is a note about the client's needs.",
-				},
-				{
-					id: 2,
-					author: "John Doe",
-					type: "requirement",
-					description: "This is a note about the client's requirements.",
-				},
-			],
-			schedule: [
-				{
-					id: 1,
-					day: new Date("2024-04-11"),
-					hour: new Date("2024-04-11T09:00:00"),
-					subject: "Meeting with client",
-				},
-				{
-					id: 2,
-					day: new Date("2024-04-12"),
-					hour: new Date("2024-04-12T14:00:00"),
+					date: new Date("2024-04-12T14:00:00"),
 					subject: "Follow-up call",
 				},
 			],
@@ -245,9 +103,27 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 		setClients(finalArr);
 	};
 
-	const addNote = (clientID: number, note: NoteProps) => {};
+	const addNote = (clientID: number, note: NoteProps): ClientProps => {
+		const finalArr = clients.reduce((acc, curr) => {
+			if (curr.id === clientID) {
+				let aux = curr;
+				aux.notes.push(note);
 
-	const addMeeting = (meeting: ImportantDateProps) => {};
+				acc.push(aux);
+				return acc;
+			}
+
+			acc.push(curr);
+			return acc;
+		}, []);
+		setClients(finalArr);
+
+		const client = getClient(clientID);
+
+		return client;
+	};
+
+	const addMeeting = (clientID: number, meeting: ImportantDateProps) => {};
 
 	return (
 		<ClientContext.Provider

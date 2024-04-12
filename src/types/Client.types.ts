@@ -1,11 +1,11 @@
-interface NoteProps {
+export interface NoteProps {
 	id: number;
 	author: string;
-	type: "Need" | "Requirement" | "Preference";
+	type: "need" | "requirement" | "preference";
 	description: string;
 }
 
-interface ImportantDateProps {
+export interface ImportantDateProps {
 	id: number;
 	day: Date;
 	hour: Date;
@@ -29,4 +29,6 @@ export type ClientContextType = {
 	addClient: (client: ClientProps) => void;
 	updateClient: (client: ClientProps) => void;
 	removeClient: (clientID: number) => void;
+	addNote: (clientID: number, note: NoteProps) => void;
+	addMeeting: (clientID: number, meeting: ImportantDateProps) => void;
 };

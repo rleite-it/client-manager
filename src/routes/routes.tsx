@@ -3,7 +3,7 @@ import ProtectedRoute from "./protected-route";
 
 const Dashboard = lazy(() => import("@/pages/dashboard"));
 const Login = lazy(() => import("@/pages/login"));
-const ErrorPage = lazy(() => import("@/pages/error"));
+const Error = lazy(() => import("@/pages/error"));
 
 export const ROUTES = [
 	{
@@ -13,11 +13,11 @@ export const ROUTES = [
 				<Dashboard />
 			</ProtectedRoute>
 		),
-		errorElement: <ErrorPage />,
+		errorElement: <Error />,
 	},
 	{
 		path: "/login",
 		element: <Login />,
-		errorElement: <ErrorPage />,
+		errorElement: <Error />,
 	},
 ];

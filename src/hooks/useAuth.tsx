@@ -4,12 +4,22 @@ import {
 	logoutUser,
 	registerUser,
 } from "@/services/Auth";
-import { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext(null);
+export type AuthContextType = {
+	authed: boolean;
+	loading: boolean;
+	login: (credentials: CredentialsProps) => void;
+	logout: () => void;
+	register: (data: CredentialsProps) => void;
+};
 
-export const AuthProvider = ({ children }) => {
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+	children,
+}) => {
 	const navigate = useNavigate();
 	// Get the value from session sotrage.
 	const sessionStorageValue = sessionStorage.getItem("token");
@@ -25,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 		if (result) {
 			const { token, userId, returnName, returnFirstName, returnLastName } =
-				result.data;
+				result;
 
 			const user = {
 				userId,
@@ -62,7 +72,7 @@ export const AuthProvider = ({ children }) => {
 		setLoading(true);
 		const result = await registerUser(data);
 
-		if (result.token) {
+		if (result) {
 			const { token, userId, returnName, returnFirstName, returnLastName } =
 				result;
 
@@ -90,9 +100,7 @@ export const AuthProvider = ({ children }) => {
 	return (
 		// Using the provider so that ANY component in our application can
 		// use the values that we are sending.
-		<AuthContext.Provider
-			value={{ authed, loading, setAuthed, login, logout, register }}
-		>
+		<AuthContext.Provider value={{ authed, loading, login, logout, register }}>
 			{children}
 		</AuthContext.Provider>
 	);

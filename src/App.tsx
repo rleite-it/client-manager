@@ -11,6 +11,7 @@ function App() {
 			<Routes>
 				{ROUTES.map((route) => (
 					<Route
+						key={route.name}
 						path={route.path}
 						element={route.element}
 						errorElement={route.errorElement}

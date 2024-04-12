@@ -1,12 +1,5 @@
 import axiosInstance from "@/interceptors";
-
-export interface CredentialsProps {
-	firstName?: string;
-	lastName?: string;
-	email: string;
-	password: string;
-	securePasswordFlag?: boolean;
-}
+import { CredentialsProps } from "@/types/Auth.types";
 
 async function loginUser(credentials: CredentialsProps) {
 	let result = {};

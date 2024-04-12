@@ -1,19 +1,7 @@
-import {
-	CredentialsProps,
-	loginUser,
-	logoutUser,
-	registerUser,
-} from "@/services/Auth";
+import { loginUser, logoutUser, registerUser } from "@/services/Auth";
+import { AuthContextType, CredentialsProps } from "@/types/Auth.types";
 import React, { useState, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-export type AuthContextType = {
-	authed: boolean;
-	loading: boolean;
-	login: (credentials: CredentialsProps) => void;
-	logout: () => void;
-	register: (data: CredentialsProps) => void;
-};
 
 const AuthContext = createContext<AuthContextType | null>(null);
 

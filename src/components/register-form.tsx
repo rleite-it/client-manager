@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { CredentialsProps } from "@/services/Auth";
-import { AuthContextType, useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { Loader } from "lucide-react";
+import { AuthContextType, CredentialsProps } from "@/types/Auth.types";
 
 const RegisterForm = () => {
 	const { loading, register } = useAuth() as AuthContextType;

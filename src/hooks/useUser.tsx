@@ -1,17 +1,6 @@
 import { userInfo } from "@/services/User";
+import { UserContexType, UserProps } from "@/types/User.types";
 import React, { createContext, useContext, useEffect } from "react";
-
-export interface UserProps {
-	email: string;
-	firstName: string;
-	lastName: string;
-	questionnaires: string;
-}
-
-export type UserContexType = {
-	user: UserProps | null;
-	updateUser: (user: UserProps) => void;
-};
 
 export const UserContext = createContext<UserContexType | null>(null);
 

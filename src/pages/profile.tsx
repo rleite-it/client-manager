@@ -108,7 +108,6 @@ const Profile = () => {
 									name="questionnaires"
 									value={userData.questionnaires}
 									placeholder="Type your message here"
-									required
 									onChange={(e) => handleChange(e)}
 								/>
 							</div>

@@ -18,6 +18,7 @@ import {
 import { useClient } from "@/hooks/useClient";
 
 import { ClientContextType, ClientProps } from "@/types/Client.types";
+import MeetingItem from "@/components/meeting-item";
 
 const ClientDetails = () => {
 	const navigate = useNavigate();
@@ -192,7 +193,16 @@ const ClientDetails = () => {
 						</form>
 					</TabsContent>
 					<TabsContent value="meetings" className="h-full">
-						Change your password here.
+						<ScrollArea className="h-[600px] p-4">
+							<div className="flex flex-col gap-y-3">
+								{client.schedule.map((meeting) => (
+									<MeetingItem
+										key={`meeting-${meeting.id}`}
+										meeting={meeting}
+									/>
+								))}
+							</div>
+						</ScrollArea>
 					</TabsContent>
 				</Tabs>
 			</div>

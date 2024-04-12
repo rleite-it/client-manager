@@ -3,11 +3,11 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { CredentialsProps } from "@/services/Auth";
-import { useAuth } from "@/hooks/useAuth";
+import { AuthContextType, useAuth } from "@/hooks/useAuth";
 import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
-	const { loading, register } = useAuth();
+	const { loading, register } = useAuth() as AuthContextType;
 
 	const [formData, setFormData] = useState<CredentialsProps>({
 		firstName: "",
@@ -52,6 +52,7 @@ const RegisterForm = () => {
 						<Input
 							id="first-name"
 							placeholder="Max"
+							name="firstName"
 							required
 							onChange={(e) => handleChange(e)}
 							disabled={loading}
@@ -62,6 +63,7 @@ const RegisterForm = () => {
 						<Input
 							id="last-name"
 							placeholder="Robinson"
+							name="lastName"
 							required
 							onChange={(e) => handleChange(e)}
 							disabled={loading}
@@ -73,6 +75,7 @@ const RegisterForm = () => {
 					<Input
 						id="email"
 						type="email"
+						name="email"
 						placeholder="m@example.com"
 						required
 						onChange={(e) => handleChange(e)}
@@ -84,6 +87,7 @@ const RegisterForm = () => {
 					<Input
 						id="password"
 						type="password"
+						name="password"
 						onChange={(e) => handleChange(e)}
 						disabled={loading}
 					/>

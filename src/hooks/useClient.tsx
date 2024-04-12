@@ -67,6 +67,11 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 					date: new Date("2024-04-12T14:00:00"),
 					subject: "Follow-up call",
 				},
+				{
+					id: 3,
+					date: new Date("2024-04-14T14:00:00"),
+					subject: "Follow-up call",
+				},
 			],
 		},
 	]);

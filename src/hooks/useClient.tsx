@@ -6,7 +6,7 @@ export const ClientContext = createContext<ClientContextType | null>(null);
 export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [clients, setClients] = useState<ClientProps[] | []>([
+	const [clients, setClients] = useState<ClientProps[]>([
 		{
 			id: 1,
 			fullName: "John Doe",
@@ -198,9 +198,23 @@ export const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
 		setClients([...clients, client]);
 	};
 
-	const updateClient = (client: ClientProps) => {};
+	const updateClient = (client: ClientProps) => {
+		const idx = clients.findIndex((clt) => clt.id === client.id);
 
-	const removeClient = (clientID: number) => {};
+		const finalArr = clients;
+		finalArr.splice(idx, 1, client);
+
+		setClients(finalArr);
+	};
+
+	const removeClient = (clientID: number) => {
+		const idx = clients.findIndex((client) => client.id === clientID);
+
+		const finalArr = clients;
+		finalArr.splice(idx, 1);
+
+		setClients(finalArr);
+	};
 
 	return (
 		<ClientContext.Provider

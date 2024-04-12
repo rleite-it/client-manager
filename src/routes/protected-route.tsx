@@ -13,7 +13,9 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 	const { authed } = useAuth() as AuthContextType;
 
 	return authed ? (
-		<div className="w-full h-screen flex justify-center p-24">{children}</div>
+		<div className="w-full h-screen flex justify-center pt-24 pb-24 p-4 xl:p-24 overflow-x-hidden">
+			{children}
+		</div>
 	) : (
 		<Navigate to="/login" />
 	);

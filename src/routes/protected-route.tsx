@@ -8,7 +8,11 @@ const ProtectedRoute = ({ children }) => {
 	// Getting the value from our cool custom hook
 	const { authed } = useAuth();
 
-	return authed ? <>{children}</> : <Navigate to="/login" />;
+	return authed ? (
+		<div className="w-full h-screen flex justify-center p-24">{children}</div>
+	) : (
+		<Navigate to="/login" />
+	);
 };
 
 export default ProtectedRoute;

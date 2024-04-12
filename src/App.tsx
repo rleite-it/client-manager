@@ -1,10 +1,23 @@
-import React from "react";
+import { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Loading from "@/pages/loading";
+import Navbar from "@/components/navbar";
+import { ROUTES } from "@/routes/routes";
 
 function App() {
 	return (
-		<>
-			<h1 className="text-[3rem]">Client Manager</h1>
-		</>
+		<Suspense fallback={<Loading />}>
+			<Navbar />
+			<Routes>
+				{ROUTES.map((route) => (
+					<Route
+						path={route.path}
+						element={route.element}
+						errorElement={route.errorElement}
+					/>
+				))}
+			</Routes>
+		</Suspense>
 	);
 }
 

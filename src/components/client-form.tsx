@@ -6,8 +6,11 @@ import { useClient } from "@/hooks/useClient";
 
 import { ClientContextType, ClientProps } from "@/types/Client.types";
 
-const ClientForm: React.FC<{ client: ClientProps }> = ({ client }) => {
-	const { updateClient } = useClient() as ClientContextType;
+const ClientForm: React.FC<{ client: ClientProps; type: "new" | "update" }> = ({
+	client,
+	type,
+}) => {
+	const { addClient, updateClient } = useClient() as ClientContextType;
 
 	const [formData, setFormData] = useState<ClientProps>(client);
 
@@ -24,7 +27,20 @@ const ClientForm: React.FC<{ client: ClientProps }> = ({ client }) => {
 			schedule: client.schedule,
 		};
 
-		updateClient(obj);
+		if (type === "update") {
+			updateClient(obj);
+		} else {
+			addClient(obj);
+			setFormData({
+				id: Math.random(),
+				fullName: "",
+				phone: "",
+				email: "",
+				address: "",
+				notes: [],
+				schedule: [],
+			});
+		}
 	};
 
 	return (
@@ -37,7 +53,7 @@ const ClientForm: React.FC<{ client: ClientProps }> = ({ client }) => {
 							id="full-name"
 							name="fullName"
 							value={formData.fullName}
-							placeholder="Max"
+							placeholder="Max Milo"
 							onChange={(e) => handleChange(e)}
 							required
 						/>
@@ -72,7 +88,7 @@ const ClientForm: React.FC<{ client: ClientProps }> = ({ client }) => {
 						id="address"
 						name="address"
 						value={formData.address}
-						placeholder="m@example.com"
+						placeholder="Main Street, Your County"
 						onChange={(e) => handleChange(e)}
 						required
 					/>

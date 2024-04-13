@@ -119,7 +119,7 @@ const ClientDetails = () => {
 					<ArrowLeftFromLine />
 				</Button>
 				<div className="w-full flex flex-col gap-4 pl-7 pr-7">
-					<ClientForm client={client} />
+					<ClientForm client={client} type="update" />
 					<div className="flex gap-4">
 						<Button
 							className="w-full flex items-center gap-3"

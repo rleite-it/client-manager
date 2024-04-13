@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
 import ClientsList from "@/components/clients-list";
 import Title from "@/components/title";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useClient } from "@/hooks/useClient";
 
 import { ClientContextType, ClientProps } from "@/types/Client.types";
+import AddClient from "@/components/add-client";
 
 const Dashboard = () => {
 	const { clients, filterClient } = useClient() as ClientContextType;
@@ -21,7 +20,7 @@ const Dashboard = () => {
 	useEffect(() => {
 		setList(filterClient(search));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [search]);
+	}, [search, clients]);
 
 	return (
 		<div className="w-full md:w-[90%] lg:w-[80%] h-full flex flex-col gap-4">
@@ -32,9 +31,7 @@ const Dashboard = () => {
 					placeholder="Search client by name..."
 					onChange={(e) => handleSearch(e)}
 				/>
-				<Button size="icon">
-					<Plus />
-				</Button>
+				<AddClient />
 			</div>
 			<ClientsList clients={list} />
 		</div>

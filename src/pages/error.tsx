@@ -6,7 +6,7 @@ const Error = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="w-screen h-screen flex flex-col items-center justify-center gap-7">
+		<div className="w-screen h-screen absolute z-10 bg-background flex flex-col items-center justify-center gap-7">
 			<div className="flex items-center gap-4">
 				<span className="font-bold text-3xl">404</span>
 				<div className="min-h-[4rem] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"></div>

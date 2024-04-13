@@ -41,4 +41,9 @@ export const ROUTES = [
 		path: "/login",
 		element: <Login />,
 	},
+	{
+		name: "notFound",
+		path: "*",
+		element: <Error />,
+	},
 ];
